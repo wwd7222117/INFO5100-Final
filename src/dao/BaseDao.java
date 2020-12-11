@@ -4,10 +4,10 @@ import java.sql.*;
 
 public class BaseDao {
     private static String driver="com.mysql.cj.jdbc.Driver";
-    private static String url="jdbc:mysql://127.0.0.1:3306/info5100?serverTimezone=UTC";
+    private static String url="jdbc:mysql://db-mysql-sfo2-74616-do-user-8424667-0.b.db.ondigitalocean.com:25060/info5100?serverTimezone=UTC";
 
-    private static String user="root";
-    private static String password="123456";
+    private static String user="doadmin";
+    private static String password="zlvikviydhlekqyz";
     static {
         try {
             Class.forName(driver);

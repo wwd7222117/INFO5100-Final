@@ -7,8 +7,8 @@ public class testMain {
     public static void main(String args[]) throws Exception {
         Customer testCustomer = new Customer("123456","ben","gao");
         //Notification testNoti = new Notification("123456","123456 has bought the car","2020-12-11 10:30:30",false);
-        //NotiDaoImpl testDataBase = new NotiDaoImpl();
-        //testDataBase.insertNotification("test_run",testCustomer);
+        NotiDaoImpl testDataBase = new NotiDaoImpl();
+        testDataBase.insertNotification("test_run",testCustomer);
         /*
         List<Notification> testget = testDataBase.findAllNotification(testCustomer);
         for(Notification cont:testget){
@@ -26,7 +26,7 @@ public class testMain {
             System.out.println(temp.getVehicleId());
         }*/
         //testCar.deleteVehicle("895472",testCustomer);
-        DealerDaoImpl dealertest = new DealerDaoImpl();
+        //DealerDaoImpl dealertest = new DealerDaoImpl();
         //dealertest.insertDealer("235353","Tom",testCustomer);
         /*
         List<Dealer> dealerList= dealertest.findAllInventory(testCustomer);

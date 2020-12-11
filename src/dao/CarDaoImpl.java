@@ -14,7 +14,7 @@ interface CarDao {
 public class CarDaoImpl extends BaseDao implements CarDao{
     public List<Vehicle> findAllVehicle(Customer customer) throws Exception {    //select无法自行构建vehicle
         Connection conn=BaseDao.getConnection();
-        String sql="select vehicleID,dealerId from Car where customerID ="+customer.getID();
+        String sql="select vehicleID,dealerId from car where customerID ="+customer.getID();
         PreparedStatement stmt= conn.prepareStatement(sql);
         ResultSet rs=  stmt.executeQuery();
         List<Vehicle> vehicleList=new ArrayList<Vehicle>();

@@ -45,7 +45,7 @@ public class DealerDaoImpl extends BaseDao implements DealerDao{
     public void deleteDealer(String dealerID,Customer customer) throws Exception{
         Connection conn=BaseDao.getConnection();
         // create the mysql delete statement.
-        String deleteDealerItems = "delete from Dealer where customerID = ? and dealerID = ?";
+        String deleteDealerItems = "delete from dealer where customerID = ? and dealerID = ?";
         PreparedStatement stmt = conn.prepareStatement(deleteDealerItems);
         stmt.setString(1, customer.getID());
         stmt.setString(2, dealerID);
