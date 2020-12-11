@@ -1,8 +1,11 @@
+package dao;
 import com.sun.xml.internal.ws.wsdl.writer.document.http.Address;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public interface DealerDao {
+interface DealerDao {
     public List<Dealer> findAllInventory(Customer customer) throws Exception;
     public void insertDealer(String dealerID,String dealerName,Customer customer) throws Exception;
     public void deleteDealer(String dealerID,Customer customer) throws Exception;
@@ -18,7 +21,7 @@ public class DealerDaoImpl extends BaseDao implements DealerDao{
         while(rs.next()) {
             Dealer dealer=new Dealer(
                     rs.getString("dealerId"),
-                    rs.getInt("dealerName")
+                    rs.getString("dealerName")
                     );
             dealerList.add(dealer);
         }
@@ -28,7 +31,7 @@ public class DealerDaoImpl extends BaseDao implements DealerDao{
     public void insertDealer(String dealerID,String dealerName,Customer customer) throws Exception{
         Connection conn=BaseDao.getConnection();
         // the mysql insert statement
-        String insertDealerItems = " insert into users (customerID, dealerID, dealerName)"
+        String insertDealerItems = " insert into dealer (customerID, dealerID, dealerName)"
                 + " values (?, ?, ?)";
 
         // create the mysql insert preparedstatement

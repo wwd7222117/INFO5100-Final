@@ -1,10 +1,13 @@
+package dao;
+
 import java.sql.*;
 
 public class BaseDao {
-    private static String driver="com.mysql.jdbc.Driver";
-    private static String url="jdbc:mysql://127.0.0.1:3306/epet";
+    private static String driver="com.mysql.cj.jdbc.Driver";
+    private static String url="jdbc:mysql://127.0.0.1:3306/info5100?serverTimezone=UTC";
+
     private static String user="root";
-    private static String password="root";
+    private static String password="123456";
     static {
         try {
             Class.forName(driver);
