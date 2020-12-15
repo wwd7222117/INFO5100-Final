@@ -11,14 +11,14 @@ interface NotiDao {
     public List<Notification> findAllNotification(Customer customer) throws Exception;
     public List<Notification> findAllUnread(Customer customer) throws Exception;
     public void insertNotification(String content,Customer customer) throws Exception;
-    public void deleteNotification(Customer customer,String tempTime) throws Exception;
+    public void deleteNotification(String customer,String tempTime) throws Exception;
     public void deleteNotificationRead(Customer customer) throws Exception;
     public void deleteNotificationAll(Customer customer) throws Exception;
     //public void markRead(Customer customer) throws Exception;
-    public void markRead(Customer customer,String tempTime) throws Exception;
+    public void markRead(String customer,String tempTime) throws Exception;
     public void markReadAll(Customer customer) throws Exception;
     //public void markUnread(Customer customer) throws Exception;
-    public void markUnread(Customer customer,String tempTime) throws Exception;
+    public void markUnread(String customer,String tempTime) throws Exception;
 }
 
 public class NotiDaoImpl extends BaseDao implements NotiDao{
@@ -76,12 +76,12 @@ public class NotiDaoImpl extends BaseDao implements NotiDao{
     }
 
     @Override
-    public void deleteNotification(Customer customer,String tempTime) throws Exception{
+    public void deleteNotification(String customer,String tempTime) throws Exception{
         Connection conn=BaseDao.getConnection();
         // create the mysql delete statement.
         String deleteNotiItems = "delete from notification where customerID = ? and time = ?";
         PreparedStatement stmt = conn.prepareStatement(deleteNotiItems);
-        stmt.setString(1, customer.getID());
+        stmt.setString(1, customer);
         stmt.setString(2, tempTime);
         // execute the preparedstatement
         stmt.execute();
@@ -134,12 +134,12 @@ public class NotiDaoImpl extends BaseDao implements NotiDao{
     }
 
     @Override
-    public void markRead(Customer customer,String tempTime) throws Exception {  //mark as Read for the first unread notification base on time
+    public void markRead(String customer,String tempTime) throws Exception {  //mark as Read for the first unread notification base on time
         Connection conn=BaseDao.getConnection();
         // create the mysql update statement.
         String MarkNotiItems = "update notification set isRead = true where customerID = ? and time = ?";
         PreparedStatement stmt = conn.prepareStatement(MarkNotiItems);
-        stmt.setString(1, customer.getID());
+        stmt.setString(1, customer);
         stmt.setString(2, tempTime);
         // execute the preparedstatement
         stmt.execute();
@@ -182,12 +182,12 @@ public class NotiDaoImpl extends BaseDao implements NotiDao{
     }
 
     @Override
-    public void markUnread(Customer customer,String tempTime) throws Exception {
+    public void markUnread(String customer,String tempTime) throws Exception {
         Connection conn=BaseDao.getConnection();
         // create the mysql update statement.
         String unMarkNotiItems = "update notification set isRead = false where customerID = ? and time = ?";
         PreparedStatement stmt = conn.prepareStatement(unMarkNotiItems);
-        stmt.setString(1, customer.getID());
+        stmt.setString(1, customer);
         stmt.setString(2,tempTime);
         // execute the preparedstatement
         stmt.execute();
