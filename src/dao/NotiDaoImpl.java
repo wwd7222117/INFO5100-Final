@@ -19,6 +19,7 @@ interface NotiDao {
     public void markReadAll(Customer customer) throws Exception;
     //public void markUnread(Customer customer) throws Exception;
     public void markUnread(String customer,String tempTime) throws Exception;
+    public boolean isFindCustomer(String customer,String password) throws Exception;
 }
 
 public class NotiDaoImpl extends BaseDao implements NotiDao{
@@ -216,4 +217,26 @@ public class NotiDaoImpl extends BaseDao implements NotiDao{
     }
 
      */
+    public boolean isFindCustomer(String customer,String customerPassword) throws Exception{
+        Connection conn=BaseDao.getConnection();
+        String sql="select * from customer where customerID = ? and password = ?";
+        PreparedStatement stmt= conn.prepareStatement(sql);
+        stmt.setString(1,customer);
+        stmt.setString(2,customerPassword);
+        ResultSet rs=  stmt.executeQuery();
+        try{
+            if(rs.next()){
+                return true;
+            }
+            else
+                return false;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            BaseDao.closeAll(conn, stmt, rs);
+        }
+    }
 }
